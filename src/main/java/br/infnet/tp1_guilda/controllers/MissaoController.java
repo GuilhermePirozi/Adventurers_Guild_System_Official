@@ -4,6 +4,7 @@ import br.infnet.tp1_guilda.domain.aventura.Missao;
 import br.infnet.tp1_guilda.domain.aventura.ParticipacaoMissao;
 import br.infnet.tp1_guilda.domain.aventura.enums.NivelPerigo;
 import br.infnet.tp1_guilda.domain.aventura.enums.StatusMissao;
+import br.infnet.tp1_guilda.domain.operacoes.PainelTaticoMissao;
 import br.infnet.tp1_guilda.dto.PageResult;
 import br.infnet.tp1_guilda.dto.consulta.missao.FilterConsultaMissao;
 import br.infnet.tp1_guilda.dto.consulta.missao.ResponseMissaoDetalhe;
@@ -15,6 +16,7 @@ import br.infnet.tp1_guilda.dto.participacaoMissao.ResponseParticipacaoMissao;
 import br.infnet.tp1_guilda.mapper.MapperMissao;
 import br.infnet.tp1_guilda.mapper.MapperParticipacaoMissao;
 import br.infnet.tp1_guilda.service.MissaoService;
+import br.infnet.tp1_guilda.service.PainelTaticoService;
 import br.infnet.tp1_guilda.service.ParticipacaoMissaoService;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.Max;
@@ -27,6 +29,7 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.OffsetDateTime;
+import java.util.List;
 
 @RestController
 @RequestMapping("/missoes")
@@ -38,6 +41,7 @@ public class MissaoController {
     private final MissaoService missaoService;
     private final ParticipacaoMissaoService participacaoMissaoService;
     private final MapperParticipacaoMissao mapperParticipacaoMissao;
+    private final PainelTaticoService painelTaticoService;
 
     @PostMapping
     public ResponseEntity<ResponseMissao> criar(@RequestBody @Valid CriarMissao dto) {
@@ -101,5 +105,10 @@ public class MissaoController {
     public ResponseEntity<Void> removerParticipacao(@PathVariable Long missaoId,@PathVariable Long aventureiroId) {
         participacaoMissaoService.removerParticipacao(missaoId, aventureiroId);
         return ResponseEntity.noContent().build();
+    }
+
+    @GetMapping("/top15dias")
+    public List<PainelTaticoMissao> top15Dias() {
+        return painelTaticoService.buscarMissoesRelevantes();
     }
 }
