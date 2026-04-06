@@ -9,18 +9,16 @@ import br.infnet.tp1_guilda.exceptions.BusinessException;
 import br.infnet.tp1_guilda.exceptions.MissaoNotFoundException;
 import br.infnet.tp1_guilda.mapper.MapperMissao;
 import br.infnet.tp1_guilda.repository.audit.OrganizationRepository;
-import br.infnet.tp1_guilda.repository.aventura.MissaoSpecifications;
 import br.infnet.tp1_guilda.repository.aventura.RepositoryMissao;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
-import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.List;
+import java.time.OffsetDateTime;
 
 @Service
 @RequiredArgsConstructor
@@ -57,11 +55,24 @@ public class MissaoService {
             String ordenarPor,
             boolean ordemDecrescente
     ) {
-        Specification<Missao> spec = MissaoSpecifications.comFiltro(filtro);
         Sort.Direction dir = ordemDecrescente ? Sort.Direction.DESC : Sort.Direction.ASC;
         String campo = resolverCampoOrdenacaoMissao(ordenarPor);
         Pageable pageable = PageRequest.of(page, size, Sort.by(dir, campo));
-        Page<Missao> resultado = repository.findAll(spec, pageable);
+
+        OffsetDateTime dataDe = filtro.dataCriacaoDe() != null ? filtro.dataCriacaoDe()
+        : OffsetDateTime.parse("1900-01-01T00:00:00Z");
+
+        OffsetDateTime dataAte = filtro.dataCriacaoAte() != null ? filtro.dataCriacaoAte()
+                : OffsetDateTime.now();
+
+        Page<Missao> resultado = repository.consultarComFiltro(
+                filtro.status(),
+                filtro.nivelPerigo(),
+                dataDe,
+                dataAte,
+                pageable
+        );
+
         return new PageResult<>(
                 resultado.getNumber(),
                 resultado.getSize(),

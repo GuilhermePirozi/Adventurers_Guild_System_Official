@@ -49,6 +49,16 @@ public class GlobalExceptionHandler {
         return new ResponseEntity<>(error, HttpStatus.NOT_FOUND);
     }
 
+    @ExceptionHandler(PainelTaticoMissaoNotFoundException.class)
+    public ResponseEntity<ErrorResponse> handlePainelTaticoMissaoNotFound(PainelTaticoMissaoNotFoundException ex) {
+        ErrorResponse error = new ErrorResponse(
+                HttpStatus.NOT_FOUND.value(),
+                ex.getMessage(),
+                LocalDateTime.now()
+        );
+        return new ResponseEntity<>(error, HttpStatus.NOT_FOUND);
+    }
+
     @ExceptionHandler(ParticipacaoMissaoNotFoundException.class)
     public ResponseEntity<ErrorResponse> handleParticipacaoMissaoNotFound(ParticipacaoMissaoNotFoundException ex) {
         ErrorResponse error = new ErrorResponse(

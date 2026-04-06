@@ -4,10 +4,10 @@ import br.infnet.tp1_guilda.domain.aventura.Missao;
 import br.infnet.tp1_guilda.domain.aventura.ParticipacaoMissao;
 import br.infnet.tp1_guilda.domain.aventura.enums.NivelPerigo;
 import br.infnet.tp1_guilda.domain.aventura.enums.StatusMissao;
-import br.infnet.tp1_guilda.domain.operacoes.PainelTaticoMissao;
 import br.infnet.tp1_guilda.dto.PageResult;
 import br.infnet.tp1_guilda.dto.consulta.missao.FilterConsultaMissao;
 import br.infnet.tp1_guilda.dto.consulta.missao.ResponseMissaoDetalhe;
+import br.infnet.tp1_guilda.dto.operacoes.ResponsePainelTaticoMissao;
 import br.infnet.tp1_guilda.dto.missao.AtualizarMissao;
 import br.infnet.tp1_guilda.dto.missao.CriarMissao;
 import br.infnet.tp1_guilda.dto.missao.ResponseMissao;
@@ -108,7 +108,7 @@ public class MissaoController {
     }
 
     @GetMapping("/top15dias")
-    public List<PainelTaticoMissao> top15Dias() {
+    public List<ResponsePainelTaticoMissao> top15Dias() {
         return painelTaticoService.buscarMissoesRelevantes();
     }
 }

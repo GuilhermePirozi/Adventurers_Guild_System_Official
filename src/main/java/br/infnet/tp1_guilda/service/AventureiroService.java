@@ -4,7 +4,6 @@ import br.infnet.tp1_guilda.domain.aventura.Aventureiro;
 import br.infnet.tp1_guilda.domain.aventura.Companheiro;
 import br.infnet.tp1_guilda.repository.audit.OrganizationRepository;
 import br.infnet.tp1_guilda.repository.audit.UserRepository;
-import br.infnet.tp1_guilda.repository.aventura.AventureiroSpecifications;
 import br.infnet.tp1_guilda.repository.aventura.RepositoryAventureiro;
 import br.infnet.tp1_guilda.repository.aventura.RepositoryParticipacaoMissao;
 import br.infnet.tp1_guilda.exceptions.AventureiroNotFoundException;
@@ -15,7 +14,6 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
-import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import br.infnet.tp1_guilda.dto.PageResult;
@@ -117,11 +115,15 @@ public class AventureiroService {
             String ordenarPor,
             boolean ordemDecrescente
     ) {
-        Specification<Aventureiro> spec = AventureiroSpecifications.comFiltro(filtro);
         Sort.Direction dir = ordemDecrescente ? Sort.Direction.DESC : Sort.Direction.ASC;
         String campo = "nivel".equalsIgnoreCase(ordenarPor) ? "nivel" : "nome";
         Pageable pageable = PageRequest.of(page, size, Sort.by(dir, campo));
-        Page<Aventureiro> resultado = repositoryAventureiro.findAll(spec, pageable);
+        Page<Aventureiro> resultado = repositoryAventureiro.consultarComFiltro(
+                filtro.classe(),
+                filtro.ativo(),
+                filtro.nivelMinimo(),
+                pageable
+        );
         return new PageResult<>(
                 resultado.getNumber(),
                 resultado.getSize(),
@@ -138,11 +140,10 @@ public class AventureiroService {
             String ordenarPor,
             boolean ordemDecrescente
     ) {
-        Specification<Aventureiro> spec = AventureiroSpecifications.nomeContem(trecho);
         Sort.Direction dir = ordemDecrescente ? Sort.Direction.DESC : Sort.Direction.ASC;
         String campo = "nivel".equalsIgnoreCase(ordenarPor) ? "nivel" : "nome";
         Pageable pageable = PageRequest.of(page, size, Sort.by(dir, campo));
-        Page<Aventureiro> resultado = repositoryAventureiro.findAll(spec, pageable);
+        Page<Aventureiro> resultado = repositoryAventureiro.buscarPorNomeContendo(trecho, pageable);
         return new PageResult<>(
                 resultado.getNumber(),
                 resultado.getSize(),

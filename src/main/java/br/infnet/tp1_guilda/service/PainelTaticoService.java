@@ -1,7 +1,9 @@
 package br.infnet.tp1_guilda.service;
 
 import br.infnet.tp1_guilda.domain.operacoes.PainelTaticoMissao;
+import br.infnet.tp1_guilda.dto.operacoes.ResponsePainelTaticoMissao;
 import br.infnet.tp1_guilda.repository.operacoes.RepositoryPainelTaticoMissao;
+import br.infnet.tp1_guilda.exceptions.PainelTaticoMissaoNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.time.OffsetDateTime;
@@ -16,7 +18,29 @@ public class PainelTaticoService {
         this.repository = repository;
     }
 
-    public List<PainelTaticoMissao> buscarMissoesRelevantes() {
-        return repository.findTop10ByUltimaAtualizacaoAfterOrderByIndiceProntidaoDesc(OffsetDateTime.now().minusDays(15));
+    public List<ResponsePainelTaticoMissao> buscarMissoesRelevantes() {
+        OffsetDateTime inicio = OffsetDateTime.now().minusDays(15);
+        List<PainelTaticoMissao> resultado = repository.findTop10ByUltimaAtualizacaoAfterOrderByIndiceProntidaoDesc(inicio);
+
+        if (resultado.isEmpty()) {
+            throw new PainelTaticoMissaoNotFoundException(inicio);
+        }
+
+        return resultado.stream()
+                .map(p -> new ResponsePainelTaticoMissao(
+                        p.getMissaoId(),
+                        p.getTitulo(),
+                        p.getStatus(),
+                        p.getNivelPerigo(),
+                        p.getOrganizacaoId(),
+                        p.getTotalParticipantes(),
+                        p.getNivelMedioEquipe(),
+                        p.getTotalRecompensa(),
+                        p.getTotalMvps(),
+                        p.getParticipantesComCompanheiro(),
+                        p.getUltimaAtualizacao(),
+                        p.getIndiceProntidao()
+                ))
+                .toList();
     }
 }
