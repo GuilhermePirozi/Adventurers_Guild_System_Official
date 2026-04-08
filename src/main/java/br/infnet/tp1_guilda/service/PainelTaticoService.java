@@ -4,6 +4,7 @@ import br.infnet.tp1_guilda.domain.operacoes.PainelTaticoMissao;
 import br.infnet.tp1_guilda.dto.operacoes.ResponsePainelTaticoMissao;
 import br.infnet.tp1_guilda.repository.operacoes.RepositoryPainelTaticoMissao;
 import br.infnet.tp1_guilda.exceptions.PainelTaticoMissaoNotFoundException;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import java.time.OffsetDateTime;
@@ -18,14 +19,7 @@ public class PainelTaticoService {
         this.repository = repository;
     }
 
-    public List<ResponsePainelTaticoMissao> buscarMissoesRelevantes() {
-        OffsetDateTime inicio = OffsetDateTime.now().minusDays(15);
-        List<PainelTaticoMissao> resultado = repository.findTop10ByUltimaAtualizacaoAfterOrderByIndiceProntidaoDesc(inicio);
-
-        if (resultado.isEmpty()) {
-            throw new PainelTaticoMissaoNotFoundException(inicio);
-        }
-
+    private List<ResponsePainelTaticoMissao> mapearRespostaPainelTaticoMissao(List<PainelTaticoMissao> resultado) {
         return resultado.stream()
                 .map(p -> new ResponsePainelTaticoMissao(
                         p.getMissaoId(),
@@ -43,4 +37,17 @@ public class PainelTaticoService {
                 ))
                 .toList();
     }
+
+    @Cacheable(cacheNames = "topMissoes15dias")
+    public List<ResponsePainelTaticoMissao> buscarMissoesRelevantes() {
+        OffsetDateTime inicio = OffsetDateTime.now().minusDays(15);
+        List<PainelTaticoMissao> resultado = repository.findTop10ByUltimaAtualizacaoAfterOrderByIndiceProntidaoDesc(inicio);
+
+        if (resultado.isEmpty()) {
+            throw new PainelTaticoMissaoNotFoundException(inicio);
+        }
+
+        return mapearRespostaPainelTaticoMissao(resultado);
+    }
+
 }

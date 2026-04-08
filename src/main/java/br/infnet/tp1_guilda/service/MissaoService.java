@@ -8,7 +8,7 @@ import br.infnet.tp1_guilda.dto.missao.CriarMissao;
 import br.infnet.tp1_guilda.exceptions.BusinessException;
 import br.infnet.tp1_guilda.exceptions.MissaoNotFoundException;
 import br.infnet.tp1_guilda.mapper.MapperMissao;
-import br.infnet.tp1_guilda.repository.audit.OrganizationRepository;
+import br.infnet.tp1_guilda.repository.audit.RepositoryOrganization;
 import br.infnet.tp1_guilda.repository.aventura.RepositoryMissao;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -25,11 +25,11 @@ import java.time.OffsetDateTime;
 public class MissaoService {
 
     private final RepositoryMissao repository;
-    private final OrganizationRepository organizationRepository;
+    private final RepositoryOrganization repositoryOrganization;
     private final MapperMissao mapperMissao;
 
     public Missao criar(CriarMissao dto) {
-        var organizacao = organizationRepository.findById(dto.organizacaoId())
+        var organizacao = repositoryOrganization.findById(dto.organizacaoId())
                 .orElseThrow(() -> new BusinessException("Organização não encontrada."));
         Missao missao = mapperMissao.toEntity(organizacao, dto);
         validarMissaoParaCriacao(missao);

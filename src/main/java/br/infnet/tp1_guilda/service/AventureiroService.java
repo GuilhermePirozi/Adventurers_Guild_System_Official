@@ -2,8 +2,8 @@ package br.infnet.tp1_guilda.service;
 
 import br.infnet.tp1_guilda.domain.aventura.Aventureiro;
 import br.infnet.tp1_guilda.domain.aventura.Companheiro;
-import br.infnet.tp1_guilda.repository.audit.OrganizationRepository;
-import br.infnet.tp1_guilda.repository.audit.UserRepository;
+import br.infnet.tp1_guilda.repository.audit.RepositoryOrganization;
+import br.infnet.tp1_guilda.repository.audit.RepositoryUser;
 import br.infnet.tp1_guilda.repository.aventura.RepositoryAventureiro;
 import br.infnet.tp1_guilda.repository.aventura.RepositoryParticipacaoMissao;
 import br.infnet.tp1_guilda.exceptions.AventureiroNotFoundException;
@@ -33,15 +33,15 @@ public class AventureiroService {
 
     private final RepositoryParticipacaoMissao repositoryParticipacaoMissao;
     private final RepositoryAventureiro repositoryAventureiro;
-    private final OrganizationRepository organizationRepository;
-    private final UserRepository userRepository;
+    private final RepositoryOrganization repositoryOrganization;
+    private final RepositoryUser repositoryUser;
     private final MapperAventureiro mapperAventureiro;
     private final MapperCompanheiro mapperCompanheiro;
 
     public Aventureiro criar(CriarAventureiro dto) {
-        var organizacao = organizationRepository.findById(dto.organizacaoId())
+        var organizacao = repositoryOrganization.findById(dto.organizacaoId())
                 .orElseThrow(() -> new BusinessException("Organização não encontrada."));
-        var user = userRepository.findById(dto.usuarioId())
+        var user = repositoryUser.findById(dto.usuarioId())
                 .orElseThrow(() -> new BusinessException("Usuário não encontrado."));
         Aventureiro aventureiro = mapperAventureiro.toEntity(organizacao, user, dto);
         return repositoryAventureiro.save(aventureiro);
