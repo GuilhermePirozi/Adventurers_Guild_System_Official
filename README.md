@@ -28,11 +28,11 @@ O projeto segue uma arquitetura em camadas:
 - **Controller** → entrada da API (REST)  
 - **Service** → regras de negócio  
 - **Repository** → acesso a dados (JPA)  
-- **DTO** → transporte de dados  
+- **DTO** → transporte de dados entre camadas  
 
 ### 🔗 Integrações
 
-- PostgreSQL → persistência  
+- PostgreSQL → persistência de dados  
 - Redis → cache  
 - Elasticsearch → busca e agregações  
 
@@ -53,10 +53,10 @@ O projeto segue uma arquitetura em camadas:
 
 ---
 
-## 🚀 Tecnologias
+## 🚀 Tecnologias utilizadas
 
 - Java 21  
-- Spring Boot 3.4.3  
+- Spring Boot  
 - Spring Data JPA  
 - Spring Data Elasticsearch  
 - PostgreSQL  
@@ -70,6 +70,8 @@ O projeto segue uma arquitetura em camadas:
 
 ## 📦 Pré-requisitos
 
+Antes de rodar o projeto, você precisa ter instalado:
+
 - Java 21+  
 - Maven  
 - Docker + Docker Compose  
@@ -77,9 +79,9 @@ O projeto segue uma arquitetura em camadas:
 
 ---
 
-## ⚙️ Configuração
+## ⚙️ Configuração do projeto
 
-### 🔹 Datasource
+### 🔹 Datasource da aplicação
 
 ```properties
 spring.datasource.url=jdbc:postgresql://localhost:5432/postgres
@@ -92,19 +94,19 @@ spring.jpa.properties.hibernate.format_sql=true
 
 spring.elasticsearch.uris=http://localhost:9200
 spring.cache.type=redis
-⚠️ Hibernate (IMPORTANTE)
+⚠️ Configuração inicial do Hibernate (IMPORTANTE)
 🔹 Primeira execução
 spring.jpa.hibernate.ddl-auto=update
 🔹 Após a primeira execução
 spring.jpa.hibernate.ddl-auto=validate
 ❗ Regra importante
-Use update apenas na primeira execução
+Use update somente na primeira execução
 Depois utilize sempre validate
 💡 Motivo
 update → cria/ajusta estrutura automaticamente
-validate → apenas valida (mais seguro)
-🐳 Docker
-🔹 Subir Elasticsearch + Kibana + Redis
+validate → apenas valida (padrão de mercado e mais seguro)
+🐳 Subindo o ambiente com Docker
+🔹 1. Elasticsearch, Kibana e Redis
 name: at-system
 services:
   elasticsearch:
@@ -115,6 +117,8 @@ services:
       - xpack.security.enabled=false
     ports:
       - "9200:9200"
+    networks:
+      - elastic
 
   kibana:
     image: docker.elastic.co/kibana/kibana:9.2.5
@@ -123,22 +127,39 @@ services:
       - ELASTICSEARCH_HOSTS=http://elasticsearch:9200
     ports:
       - "5601:5601"
+    depends_on:
+      - elasticsearch
+    networks:
+      - elastic
 
   redis-tp3:
     image: redis:latest
     container_name: redis-cache-tp3
     ports:
       - "6379:6379"
+
+networks:
+  elastic:
+    driver: bridge
 ▶️ Subir serviços
 docker-compose up -d
-🔹 PostgreSQL (imagem do professor)
+🔹 2. PostgreSQL (imagem do professor)
 docker run -d --name postgres-tp2 \
 -e POSTGRES_PASSWORD=guildpass \
 -p 5432:5432 \
 leogloriainfnet/postgres-tp2-spring:2.0-mac
-🔹 Ajustar senha do banco
+🔹 3. Ajustar senha
 docker exec -it <ID_DO_CONTAINER> psql -U postgres
 ALTER USER postgres WITH PASSWORD 'guildpass';
+🔹 4. Verificar containers
+docker ps
+
+Containers esperados:
+
+postgres-tp2
+elasticsearch-tp3
+kibana-tp3
+redis-cache-tp3
 ▶️ Rodando a aplicação
 mvn spring-boot:run
 🌐 Acesso
@@ -147,7 +168,7 @@ http://localhost:8080
 
 🗄️ Popular banco
 
-Execute os scripts na ordem:
+Execute os scripts SQL na ordem:
 
 aventureiros
 companheiros
@@ -155,7 +176,7 @@ missoes
 participacoes_missao
 ⚡ Teste rápido
 curl http://localhost:8080/aventureiros
-🔥 Endpoints
+🔥 Endpoints principais
 🧙 Aventureiros
 GET /aventureiros
 GET /aventureiros?size=100
@@ -191,26 +212,26 @@ Exemplo:
 
 /relatorios/ranking-participacao?inicio=2000-01-01T00:00:00Z&fim=2100-01-01T00:00:00Z
 🔎 Elasticsearch
-Buscas
-GET /produtos/busca/nome
-GET /produtos/busca/descricao
+🔹 Buscas
+GET /produtos/busca/nome?termo=espada
+GET /produtos/busca/descricao?termo=dragoes
 GET /produtos/busca/frase
 GET /produtos/busca/fuzzy
 GET /produtos/busca/multicampos
 GET /produtos/busca/com-filtro
 GET /produtos/busca/faixa-preco
 GET /produtos/busca/avancada
-Agregações
+🔹 Agregações
 GET /produtos/agregacoes/por-categoria
 GET /produtos/agregacoes/por-raridade
 GET /produtos/agregacoes/preco-medio
 GET /produtos/agregacoes/faixas-preco
 📬 Postman
 
-Importe a collection para facilitar os testes.
+Importe a collection no Postman para facilitar os testes.
 
 🔄 Fluxo correto
-Subir Docker
+Subir Docker (Postgres + Elastic + Redis)
 Rodar aplicação
 Executar inserts
 Testar endpoints
@@ -221,30 +242,31 @@ Senha guildpass
 Container ativo
 ❌ Elasticsearch não responde
 Porta 9200
+Container ativo
 ❌ Redis não funciona
 Porta 6379
+Container ativo
 ❌ Sem dados na API
-Execute os inserts
+Execute os inserts SQL
 🧠 Observações
 O banco já vem estruturado pela imagem Docker
 O projeto não cria tabelas automaticamente
-Use validate após setup
+Use validate após o setup inicial
 👨‍💻 Autor
 
-Projeto desenvolvido para fins acadêmicos e evolução profissional.
+Projeto desenvolvido para fins acadêmicos e evolução profissional em backend.
 
 📌 Status
 Em desenvolvimento
-Pronto para testes locais
-Estrutura de nível mercado
+Pronto para execução local
+Estrutura próxima de ambiente real
+🚀 Resultado
 
----
+Este projeto demonstra:
 
-## 🔥 Resultado
-
-✔ Igual ao layout da sua imagem  
-✔ Títulos bonitos  
-✔ Emojis organizando  
-✔ Link clicável  
-✔ Lista numerada certinha  
-✔ Sem bug no GitHub  
+Domínio de APIs REST
+Integração com múltiplas tecnologias
+Uso de cache (Redis)
+Busca avançada (Elasticsearch)
+Organização em camadas
+Preparação para ambiente real
