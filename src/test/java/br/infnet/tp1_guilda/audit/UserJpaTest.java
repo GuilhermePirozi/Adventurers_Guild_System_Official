@@ -1,4 +1,5 @@
 package br.infnet.tp1_guilda.audit;
+import br.infnet.tp1_guilda.config.TestCacheConfig;
 import br.infnet.tp1_guilda.domain.audit.Organization;
 import br.infnet.tp1_guilda.domain.audit.Permission;
 import br.infnet.tp1_guilda.domain.audit.Role;
@@ -15,6 +16,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.data.jpa.test.autoconfigure.DataJpaTest;
 import org.springframework.boot.jdbc.test.autoconfigure.AutoConfigureTestDatabase;
 import org.springframework.boot.persistence.autoconfigure.EntityScan;
+import org.springframework.context.annotation.Import;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.test.context.ActiveProfiles;
 import java.util.HashSet;
@@ -24,9 +26,11 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @DataJpaTest
 @ActiveProfiles("test")
+@Import(TestCacheConfig.class)
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
 @EnableJpaRepositories(basePackages = "br.infnet.tp1_guilda.repository.audit")
 @EntityScan(basePackages = "br.infnet.tp1_guilda.domain.audit")
+
 class UserJpaTest {
 
     @Autowired
