@@ -1,0 +1,962 @@
+{
+  "info": {
+    "_postman_id": "fd4c4a68-4f8d-471e-a860-4ca8b4efbe29",
+    "name": "Adventurers_Guild_System_Official",
+    "description": "### Welcome to Postman! This is your first collection. \n\nCollections are your starting point for building and testing APIs. You can use this one to:\n\n• Group related requests\n• Test your API in real-world scenarios\n• Document and share your requests\n\nUpdate the name and overview whenever you’re ready to make it yours.\n\n[Learn more about Postman Collections.](https://learning.postman.com/docs/collections/collections-overview/)",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "52984819",
+    "_collection_link": "https://go.postman.co/collection/52984819-fd4c4a68-4f8d-471e-a860-4ca8b4efbe29?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "Aventureiros",
+      "item": [
+        {
+          "name": "Criar Aventureiro",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"nome\": \"Brennda\",\r\n  \"classe\": \"MAGO\",\r\n  \"nivel\": 90,\r\n  \"organizacaoId\": 1,\r\n  \"usuarioId\": 1\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/aventureiros",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "aventureiros"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Listar Aventureiro",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/aventureiros?size=100",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "aventureiros"
+              ],
+              "query": [
+                {
+                  "key": "size",
+                  "value": "100"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Buscar por Nome",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/aventureiros/busca?trecho=Aegwynn",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "aventureiros",
+                "busca"
+              ],
+              "query": [
+                {
+                  "key": "trecho",
+                  "value": "Aegwynn"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Buscar por Id",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/aventureiros/5",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "aventureiros",
+                "5"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Ver Perfil",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/aventureiros/19/perfil",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "aventureiros",
+                "19",
+                "perfil"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Atualizar Aventureiro",
+          "request": {
+            "method": "PATCH",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"nome\": \"Arthas Menethil\",\r\n  \"classe\": \"GUERREIRO\",\r\n  \"nivel\": 50\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/aventureiros/1",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "aventureiros",
+                "1"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Encerrar Vínculo",
+          "request": {
+            "method": "PATCH",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/aventureiros/1/encerrar-vinculo",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "aventureiros",
+                "1",
+                "encerrar-vinculo"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Recrutar Aventureiro",
+          "request": {
+            "method": "PATCH",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/aventureiros/1/recrutar",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "aventureiros",
+                "1",
+                "recrutar"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Definir Companheiro",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"nome\": \"Lobo Sombrio\",\r\n  \"especie\": \"LOBO\",\r\n  \"lealdade\": 90\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/aventureiros/31/companheiro",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "aventureiros",
+                "31",
+                "companheiro"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Atualizar Companheiro",
+          "request": {
+            "method": "PATCH",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"nome\": \"Lobo Sombrio\",\r\n  \"especie\": \"LOBO\",\r\n  \"lealdade\": 95\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/aventureiros/31/companheiro",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "aventureiros",
+                "31",
+                "companheiro"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Remover Companheiro",
+          "request": {
+            "method": "PATCH",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/aventureiros/31/remover-companheiro",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "aventureiros",
+                "31",
+                "remover-companheiro"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Missões",
+      "item": [
+        {
+          "name": "Criar Missão",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"titulo\": \"Derrotar dragão ancestral\",\r\n  \"nivelPerigo\": \"ALTO\",\r\n  \"status\": \"PLANEJADA\",\r\n  \"organizacaoId\": 1\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/missoes",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "missoes"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Listar missões",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/missoes?size=50",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "missoes"
+              ],
+              "query": [
+                {
+                  "key": "size",
+                  "value": "50"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Buscar por Id",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/missoes/15",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "missoes",
+                "15"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Detalhes Da Missão",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/missoes/2/detalhe",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "missoes",
+                "2",
+                "detalhe"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Atualizar Missão",
+          "request": {
+            "method": "PATCH",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"titulo\": \"Derrotar dragão ancestral\",\r\n  \"nivelPerigo\": \"EXTREMO\",\r\n  \"status\": \"PLANEJADA\",\r\n  \"organizacaoId\": 1\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/missoes/22",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "missoes",
+                "22"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Excluir Missão",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/missoes/24",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "missoes",
+                "24"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Adicionar Participação de Missão",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"papel\": \"ATAQUE\",\r\n  \"recompensaOuro\": 520,\r\n  \"destaque\": false\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/missoes/7/aventureiros/7/participacao",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "missoes",
+                "7",
+                "aventureiros",
+                "7",
+                "participacao"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Remover Participação de Missão",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/missoes/5/aventureiros/1/participacao",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "missoes",
+                "5",
+                "aventureiros",
+                "1",
+                "participacao"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Top 10 missões dos últimos 15 dias",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/missoes/top15dias",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "missoes",
+                "top15dias"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Relatórios",
+      "item": [
+        {
+          "name": "Ranking de Participação por Período",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/relatorios/ranking-participacao?inicio=2026-04-01T00:00:00Z&fim=2026-04-03T23:59:59Z",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "relatorios",
+                "ranking-participacao"
+              ],
+              "query": [
+                {
+                  "key": "inicio",
+                  "value": "2026-04-01T00:00:00Z"
+                },
+                {
+                  "key": "fim",
+                  "value": "2026-04-03T23:59:59Z"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Ranking de Participação Geral",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/relatorios/ranking-participacao?inicio=2000-01-01T00:00:00Z&fim=2100-01-01T00:00:00Z",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "relatorios",
+                "ranking-participacao"
+              ],
+              "query": [
+                {
+                  "key": "inicio",
+                  "value": "2000-01-01T00:00:00Z"
+                },
+                {
+                  "key": "fim",
+                  "value": "2100-01-01T00:00:00Z"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Relatórios Das Missões Gerais",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/relatorios/missoes-metricas?inicio=2000-01-01T00:00:00Z&fim=2100-01-01T00:00:00Z",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "relatorios",
+                "missoes-metricas"
+              ],
+              "query": [
+                {
+                  "key": "inicio",
+                  "value": "2000-01-01T00:00:00Z"
+                },
+                {
+                  "key": "fim",
+                  "value": "2100-01-01T00:00:00Z"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Relatórios Das Missões por Período",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/relatorios/missoes-metricas?inicio=2026-04-01T00:00:00Z&fim=2026-04-03T23:59:59Z",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "relatorios",
+                "missoes-metricas"
+              ],
+              "query": [
+                {
+                  "key": "inicio",
+                  "value": "2026-04-01T00:00:00Z"
+                },
+                {
+                  "key": "fim",
+                  "value": "2026-04-03T23:59:59Z"
+                }
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Elastic",
+      "item": [
+        {
+          "name": "Buscar produtos por nome",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/produtos/busca/nome?termo=espada",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "produtos",
+                "busca",
+                "nome"
+              ],
+              "query": [
+                {
+                  "key": "termo",
+                  "value": "espada"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Buscar produtos por descrição",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/produtos/busca/descricao?termo=dragoes",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "produtos",
+                "busca",
+                "descricao"
+              ],
+              "query": [
+                {
+                  "key": "termo",
+                  "value": "dragoes"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Buscar produtos por frase exata",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/produtos/busca/frase?termo=Ferramenta essencial para enfrentar criaturas lendárias.",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "produtos",
+                "busca",
+                "frase"
+              ],
+              "query": [
+                {
+                  "key": "termo",
+                  "value": "Ferramenta essencial para enfrentar criaturas lendárias."
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Buscar produtos com fuzzy (erro de digitação)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/produtos/busca/fuzzy?termo=espdaa",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "produtos",
+                "busca",
+                "fuzzy"
+              ],
+              "query": [
+                {
+                  "key": "termo",
+                  "value": "espdaa"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Buscar produtos em múltiplos campos",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/produtos/busca/multicampos?termo=dragao",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "produtos",
+                "busca",
+                "multicampos"
+              ],
+              "query": [
+                {
+                  "key": "termo",
+                  "value": "dragao"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Buscar produtos por descrição + categoria",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/produtos/busca/com-filtro?termo=Item utilizado em batalhas contra dragões.&categoria=pergaminhos",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "produtos",
+                "busca",
+                "com-filtro"
+              ],
+              "query": [
+                {
+                  "key": "termo",
+                  "value": "Item utilizado em batalhas contra dragões."
+                },
+                {
+                  "key": "categoria",
+                  "value": "pergaminhos"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Buscar produtos por faixa de preço",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/produtos/busca/faixa-preco?min=90&max=272",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "produtos",
+                "busca",
+                "faixa-preco"
+              ],
+              "query": [
+                {
+                  "key": "min",
+                  "value": "90"
+                },
+                {
+                  "key": "max",
+                  "value": "272"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Buscar produtos com filtros avançados",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/produtos/busca/avancada?categoria=armaduras&raridade=raro&min=90&max=500",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "produtos",
+                "busca",
+                "avancada"
+              ],
+              "query": [
+                {
+                  "key": "categoria",
+                  "value": "armaduras"
+                },
+                {
+                  "key": "raridade",
+                  "value": "raro"
+                },
+                {
+                  "key": "min",
+                  "value": "90"
+                },
+                {
+                  "key": "max",
+                  "value": "500"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Contar produtos por categoria",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/produtos/agregacoes/por-categoria",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "produtos",
+                "agregacoes",
+                "por-categoria"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Contar produtos por raridade",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/produtos/agregacoes/por-raridade",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "produtos",
+                "agregacoes",
+                "por-raridade"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Calcular preço médio dos produtos",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/produtos/agregacoes/preco-medio",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "produtos",
+                "agregacoes",
+                "preco-medio"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Agrupar produtos por faixa de preço",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/produtos/agregacoes/faixas-preco",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "produtos",
+                "agregacoes",
+                "faixas-preco"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    }
+  ]
+}

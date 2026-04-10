@@ -1,0 +1,193 @@
+-- =============================================
+-- 👤 AVENTUREIROS (50 registros)
+-- Insere os aventureiros da organização 1,
+-- com nome, classe, nível e status ativo.
+-- =============================================
+INSERT INTO aventura.aventureiros
+(aventureiro_id, organizacao_id, usuario_id, nome, classe, nivel, ativo, data_criacao, data_atualizacao)
+VALUES
+  (nextval('aventura.aventureiro_seq'), 1, 1, 'Arthas',       'GUERREIRO', 45, true, now(), now()),
+  (nextval('aventura.aventureiro_seq'), 1, 1, 'Merlin',       'MAGO',      60, true, now(), now()),
+  (nextval('aventura.aventureiro_seq'), 1, 1, 'Legolas',      'ARQUEIRO',  55, true, now(), now()),
+  (nextval('aventura.aventureiro_seq'), 1, 1, 'Thorin',       'GUERREIRO', 50, true, now(), now()),
+  (nextval('aventura.aventureiro_seq'), 1, 1, 'Gandalf',      'MAGO',      70, true, now(), now()),
+  (nextval('aventura.aventureiro_seq'), 1, 1, 'Valeera',      'LADINO',    48, true, now(), now()),
+  (nextval('aventura.aventureiro_seq'), 1, 1, 'Uther',        'CLERIGO',   65, true, now(), now()),
+  (nextval('aventura.aventureiro_seq'), 1, 1, 'Sylvanas',     'ARQUEIRO',  58, true, now(), now()),
+  (nextval('aventura.aventureiro_seq'), 1, 1, 'Illidan',      'LADINO',    62, true, now(), now()),
+  (nextval('aventura.aventureiro_seq'), 1, 1, 'Tyrande',      'CLERIGO',   57, true, now(), now()),
+
+  (nextval('aventura.aventureiro_seq'), 1, 1, 'Varian',       'GUERREIRO', 52, true, now(), now()),
+  (nextval('aventura.aventureiro_seq'), 1, 1, 'Jaina',        'MAGO',      59, true, now(), now()),
+  (nextval('aventura.aventureiro_seq'), 1, 1, 'Rexxar',       'ARQUEIRO',  54, true, now(), now()),
+  (nextval('aventura.aventureiro_seq'), 1, 1, 'Anduin',       'CLERIGO',   42, true, now(), now()),
+  (nextval('aventura.aventureiro_seq'), 1, 1, 'Garrosh',      'GUERREIRO', 56, true, now(), now()),
+  (nextval('aventura.aventureiro_seq'), 1, 1, 'Kaelthas',     'MAGO',      61, true, now(), now()),
+  (nextval('aventura.aventureiro_seq'), 1, 1, 'Vashj',        'ARQUEIRO',  53, true, now(), now()),
+  (nextval('aventura.aventureiro_seq'), 1, 1, 'Maiev',        'LADINO',    57, true, now(), now()),
+  (nextval('aventura.aventureiro_seq'), 1, 1, 'Bolvar',       'CLERIGO',   49, true, now(), now()),
+  (nextval('aventura.aventureiro_seq'), 1, 1, 'Grommash',     'GUERREIRO', 58, true, now(), now()),
+
+  (nextval('aventura.aventureiro_seq'), 1, 1, 'Kelthuzad',    'MAGO',      67, true, now(), now()),
+  (nextval('aventura.aventureiro_seq'), 1, 1, 'Alleria',      'ARQUEIRO',  55, true, now(), now()),
+  (nextval('aventura.aventureiro_seq'), 1, 1, 'Valeera2',     'LADINO',    46, true, now(), now()),
+  (nextval('aventura.aventureiro_seq'), 1, 1, 'Turalyon',     'CLERIGO',   60, true, now(), now()),
+  (nextval('aventura.aventureiro_seq'), 1, 1, 'Durotan',      'GUERREIRO', 50, true, now(), now()),
+  (nextval('aventura.aventureiro_seq'), 1, 1, 'Medivh',       'MAGO',      72, true, now(), now()),
+  (nextval('aventura.aventureiro_seq'), 1, 1, 'Hawkeye',      'ARQUEIRO',  51, true, now(), now()),
+  (nextval('aventura.aventureiro_seq'), 1, 1, 'Garona',       'LADINO',    55, true, now(), now()),
+  (nextval('aventura.aventureiro_seq'), 1, 1, 'Benedictus',   'CLERIGO',   64, true, now(), now()),
+  (nextval('aventura.aventureiro_seq'), 1, 1, 'Cairne',       'GUERREIRO', 53, true, now(), now()),
+
+  (nextval('aventura.aventureiro_seq'), 1, 1, 'Antonidas',    'MAGO',      68, true, now(), now()),
+  (nextval('aventura.aventureiro_seq'), 1, 1, 'Shandris',     'ARQUEIRO',  52, true, now(), now()),
+  (nextval('aventura.aventureiro_seq'), 1, 1, 'Edwin',        'LADINO',    49, true, now(), now()),
+  (nextval('aventura.aventureiro_seq'), 1, 1, 'Velen',        'CLERIGO',   75, true, now(), now()),
+  (nextval('aventura.aventureiro_seq'), 1, 1, 'Muradin',      'GUERREIRO', 54, true, now(), now()),
+  (nextval('aventura.aventureiro_seq'), 1, 1, 'Khadgar',      'MAGO',      66, true, now(), now()),
+  (nextval('aventura.aventureiro_seq'), 1, 1, 'Robin',        'ARQUEIRO',  47, true, now(), now()),
+  (nextval('aventura.aventureiro_seq'), 1, 1, 'Valeera3',     'LADINO',    44, true, now(), now()),
+  (nextval('aventura.aventureiro_seq'), 1, 1, 'Alonsus',      'CLERIGO',   63, true, now(), now()),
+  (nextval('aventura.aventureiro_seq'), 1, 1, 'Broxigar',     'GUERREIRO', 59, true, now(), now()),
+
+  (nextval('aventura.aventureiro_seq'), 1, 1, 'Aegwynn',      'MAGO',      80, true, now(), now()),
+  (nextval('aventura.aventureiro_seq'), 1, 1, 'Artemis',      'ARQUEIRO',  56, true, now(), now()),
+  (nextval('aventura.aventureiro_seq'), 1, 1, 'Shadow',       'LADINO',    45, true, now(), now()),
+  (nextval('aventura.aventureiro_seq'), 1, 1, 'Lightbringer', 'CLERIGO',   62, true, now(), now()),
+  (nextval('aventura.aventureiro_seq'), 1, 1, 'Leonidas',     'GUERREIRO', 57, true, now(), now()),
+  (nextval('aventura.aventureiro_seq'), 1, 1, 'Morgana',      'MAGO',      65, true, now(), now()),
+  (nextval('aventura.aventureiro_seq'), 1, 1, 'GreenArrow',   'ARQUEIRO',  50, true, now(), now()),
+  (nextval('aventura.aventureiro_seq'), 1, 1, 'Nightblade',   'LADINO',    48, true, now(), now()),
+  (nextval('aventura.aventureiro_seq'), 1, 1, 'Divine',       'CLERIGO',   61, true, now(), now()),
+  (nextval('aventura.aventureiro_seq'), 1, 1, 'Spartacus',    'GUERREIRO', 58, true, now(), now());
+
+
+-- =============================================
+-- 🐾 COMPANHEIROS (30 registros)
+-- Vincula um companheiro a um aventureiro
+-- pelo seu aventureiro_id, com espécie e lealdade.
+-- =============================================
+INSERT INTO aventura.companheiros
+(aventureiro_id, nome, especie, lealdade)
+VALUES
+  (12, 'Fenrir',  'LOBO',            90),
+  (3,  'Athena',  'CORUJA',          85),
+  (25, 'Drako',   'DRAGAO_MINIATURA',95),
+  (7,  'Ragnar',  'LOBO',            88),
+  (19, 'Orion',   'CORUJA',          80),
+
+  (2,  'Golemix', 'GOLEM',           70),
+  (30, 'Luna',    'CORUJA',          92),
+  (14, 'Fang',    'LOBO',            87),
+  (5,  'Ember',   'DRAGAO_MINIATURA',93),
+  (22, 'Stone',   'GOLEM',           75),
+
+  (9,  'Wolfy',   'LOBO',            89),
+  (27, 'Sky',     'CORUJA',          84),
+  (1,  'Flare',   'DRAGAO_MINIATURA',91),
+  (18, 'Rocky',   'GOLEM',           78),
+  (11, 'Ghost',   'LOBO',            86),
+
+  (6,  'Nova',    'CORUJA',          83),
+  (24, 'Inferno', 'DRAGAO_MINIATURA',96),
+  (15, 'Granite', 'GOLEM',           72),
+  (28, 'Shadow',  'LOBO',            88),
+  (4,  'Echo',    'CORUJA',          81),
+
+  (21, 'Blaze',   'DRAGAO_MINIATURA',94),
+  (10, 'Titan',   'GOLEM',           76),
+  (26, 'Hunter',  'LOBO',            87),
+  (8,  'Wisdom',  'CORUJA',          85),
+  (17, 'Spark',   'DRAGAO_MINIATURA',90),
+
+  (13, 'Boulder', 'GOLEM',           73),
+  (29, 'Alpha',   'LOBO',            91),
+  (16, 'Feather', 'CORUJA',          82),
+  (20, 'Pyro',    'DRAGAO_MINIATURA',93),
+  (23, 'Steel',   'GOLEM',           77);
+
+
+-- =============================================
+-- ⚔️ MISSÕES (20 registros)
+-- Cria missões da organização 1 com título,
+-- nível de perigo, status e datas.
+-- =============================================
+INSERT INTO aventura.missoes
+(missao_id, organizacao_id, titulo, nivel_perigo, status, data_criacao, data_inicio, data_termino)
+VALUES
+  (nextval('aventura.missao_seq'), 1, 'Caçada ao Lobo Sombrio',      'MEDIO', 'PLANEJADA',    now(), null, null),
+  (nextval('aventura.missao_seq'), 1, 'Defesa da Vila de Argen',      'ALTO',  'EM_ANDAMENTO', now(), now(), null),
+  (nextval('aventura.missao_seq'), 1, 'Exploração da Caverna Antiga', 'BAIXO', 'CONCLUIDA',    now(), now(), now()),
+  (nextval('aventura.missao_seq'), 1, 'Resgate no Vale Perdido',      'ALTO',  'PLANEJADA',    now(), null, null),
+  (nextval('aventura.missao_seq'), 1, 'Investigação nas Ruínas',      'MEDIO', 'EM_ANDAMENTO', now(), now(), null),
+
+  (nextval('aventura.missao_seq'), 1, 'Proteção de Caravana',         'BAIXO', 'CONCLUIDA',    now(), now(), now()),
+  (nextval('aventura.missao_seq'), 1, 'Caça ao Dragão Menor',         'ALTO',  'PLANEJADA',    now(), null, null),
+  (nextval('aventura.missao_seq'), 1, 'Busca pelo Artefato Perdido',  'MEDIO', 'EM_ANDAMENTO', now(), now(), null),
+  (nextval('aventura.missao_seq'), 1, 'Patrulha na Floresta Negra',   'BAIXO', 'CONCLUIDA',    now(), now(), now()),
+  (nextval('aventura.missao_seq'), 1, 'Eliminação de Bandidos',       'MEDIO', 'PLANEJADA',    now(), null, null),
+
+  (nextval('aventura.missao_seq'), 1, 'Reconhecimento de Território', 'BAIXO', 'EM_ANDAMENTO', now(), now(), null),
+  (nextval('aventura.missao_seq'), 1, 'Captura de Criatura Selvagem', 'MEDIO', 'CONCLUIDA',    now(), now(), now()),
+  (nextval('aventura.missao_seq'), 1, 'Escolta Real',                 'ALTO',  'PLANEJADA',    now(), null, null),
+  (nextval('aventura.missao_seq'), 1, 'Recuperação de Relíquia',      'MEDIO', 'EM_ANDAMENTO', now(), now(), null),
+  (nextval('aventura.missao_seq'), 1, 'Defesa do Forte',              'ALTO',  'CONCLUIDA',    now(), now(), now()),
+
+  (nextval('aventura.missao_seq'), 1, 'Expedição ao Deserto',         'MEDIO', 'PLANEJADA',    now(), null, null),
+  (nextval('aventura.missao_seq'), 1, 'Caça ao Assassino',            'ALTO',  'EM_ANDAMENTO', now(), now(), null),
+  (nextval('aventura.missao_seq'), 1, 'Limpeza de Monstros',          'BAIXO', 'CONCLUIDA',    now(), now(), now()),
+  (nextval('aventura.missao_seq'), 1, 'Exploração Subterrânea',       'MEDIO', 'PLANEJADA',    now(), null, null),
+  (nextval('aventura.missao_seq'), 1, 'Missão Secreta da Guilda',     'ALTO',  'EM_ANDAMENTO', now(), now(), null);
+
+
+-- =============================================
+-- 🤝 PARTICIPAÇÕES EM MISSÃO (29 registros)
+-- Relaciona aventureiros às missões com
+-- papel, recompensa em ouro e destaque.
+-- =============================================
+INSERT INTO aventura.participacoes_missao
+(missao_id, aventureiro_id, papel, recompensa_ouro, destaque, data_registro)
+VALUES
+  (1,  12, 'LIDER',     500, true,  now()),
+  (1,  3,  'ATAQUE',    300, false, now()),
+  (1,  25, 'SUPORTE',   280, false, now()),
+
+  (2,  7,  'LIDER',     550, true,  now()),
+  (2,  19, 'DEFESA',    400, false, now()),
+  (2,  2,  'SUPORTE',   260, false, now()),
+
+  (3,  30, 'EXPLORADOR',200, false, now()),
+  (3,  14, 'ATAQUE',    320, false, now()),
+
+  (4,  5,  'LIDER',     600, true,  now()),
+  (4,  22, 'DEFESA',    350, false, now()),
+
+  (5,  9,  'SUPORTE',   270, false, now()),
+  (5,  27, 'ATAQUE',    310, false, now()),
+
+  (6,  18, 'EXPLORADOR',290, true,  now()),
+  (7,  11, 'DEFESA',    330, false, now()),
+  (8,  6,  'ATAQUE',    340, false, now()),
+
+  (6,  21, 'LIDER',     520, true,  now()),
+  (6,  4,  'ATAQUE',    310, false, now()),
+
+  (7,  15, 'SUPORTE',   260, false, now()),
+  (7,  28, 'ATAQUE',    300, false, now()),
+
+  (8,  13, 'DEFESA',    350, true,  now()),
+  (8,  17, 'SUPORTE',   280, false, now()),
+
+  (9,  10, 'LIDER',     600, true,  now()),
+  (9,  23, 'ATAQUE',    320, false, now()),
+
+  (10, 8,  'SUPORTE',   270, false, now()),
+  (10, 16, 'DEFESA',    330, false, now()),
+
+  (11, 1,  'EXPLORADOR',290, true,  now()),
+  (11, 20, 'ATAQUE',    310, false, now()),
+
+  (12, 26, 'LIDER',     550, true,  now()),
+  (12, 24, 'SUPORTE',   280, false, now()),
+
+  (13, 29, 'DEFESA',    360, false, now());
