@@ -4,7 +4,7 @@ import br.infnet.tp1_guilda.domain.elastic.ProdutoLoja;
 import br.infnet.tp1_guilda.dto.elastic.ResponseContagemPorCampo;
 import br.infnet.tp1_guilda.dto.elastic.ResponseFaixaPrecoLoja;
 import br.infnet.tp1_guilda.dto.elastic.ResponsePrecoMedioLoja;
-import br.infnet.tp1_guilda.exceptions.ElasticsearchComunicacaoException;
+import br.infnet.tp1_guilda.exceptions.ElasticsearchException;
 import br.infnet.tp1_guilda.mapper.MapperProdutoLoja;
 import co.elastic.clients.elasticsearch.ElasticsearchClient;
 import co.elastic.clients.elasticsearch._types.aggregations.Aggregation;
@@ -102,7 +102,7 @@ public class ProdutoLojaService {
 
             return new ResponsePrecoMedioLoja(response.aggregations().get(key).avg().value());
         } catch (IOException e) {
-            throw new ElasticsearchComunicacaoException("Erro ao executar busca no Elasticsearch");
+            throw new ElasticsearchException("Erro ao executar busca no Elasticsearch");
         }
     }
 
@@ -127,7 +127,7 @@ public class ProdutoLojaService {
                     .map(mapperProdutoLoja::toFaixaPreco)
                     .toList();
         } catch (IOException e) {
-            throw new ElasticsearchComunicacaoException("Erro ao executar busca no Elasticsearch");
+            throw new ElasticsearchException("Erro ao executar busca no Elasticsearch");
         }
     }
 
@@ -156,7 +156,7 @@ public class ProdutoLojaService {
 
             return extrairHitSources(response);
         } catch (IOException e) {
-            throw new ElasticsearchComunicacaoException("Erro ao executar busca no Elasticsearch");
+            throw new ElasticsearchException("Erro ao executar busca no Elasticsearch");
         }
     }
 
@@ -171,7 +171,7 @@ public class ProdutoLojaService {
 
             return mapStringTermsAggregate(response, key, field);
         } catch (IOException e) {
-            throw new ElasticsearchComunicacaoException("Erro ao executar busca no Elasticsearch");
+            throw new ElasticsearchException("Erro ao executar busca no Elasticsearch");
         }
     }
 

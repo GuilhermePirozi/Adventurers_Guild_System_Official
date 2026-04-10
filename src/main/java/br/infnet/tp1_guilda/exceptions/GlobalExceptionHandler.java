@@ -69,8 +69,8 @@ public class GlobalExceptionHandler {
         return new ResponseEntity<>(error, HttpStatus.NOT_FOUND);
     }
 
-    @ExceptionHandler(ElasticsearchComunicacaoException.class)
-    public ResponseEntity<ErrorResponse> handleElasticsearchComunicacao(ElasticsearchComunicacaoException ex) {
+    @ExceptionHandler(ElasticsearchException.class)
+    public ResponseEntity<ErrorResponse> handleElasticsearchComunicacao(ElasticsearchException ex) {
         ErrorResponse error = new ErrorResponse(
                 HttpStatus.SERVICE_UNAVAILABLE.value(),
                 ex.getMessage(),
