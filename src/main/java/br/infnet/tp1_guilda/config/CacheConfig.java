@@ -1,31 +1,27 @@
 package br.infnet.tp1_guilda.config;
 
-import com.github.benmanes.caffeine.cache.Caffeine;
-import org.springframework.cache.CacheManager;
-import org.springframework.cache.caffeine.CaffeineCacheManager;
+import org.springframework.boot.cache.autoconfigure.RedisCacheManagerBuilderCustomizer;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.data.redis.cache.RedisCacheConfiguration;
 
-import java.util.concurrent.TimeUnit;
+import java.time.Duration;
 
 @Configuration
 public class CacheConfig {
 
-    // eu apliquei cache na camada de service para evitar executar várias vezes a mesma
-    // consulta pesada em sequência. Criei esta classe CacheConfig para centralizar a configuração
-    // do caffeine em um único lugar, deixando o projeto organizado.
-    // Com expiração de 60 segundos, o resultado do endpoint é reaproveitado nesse intervalo e
-    // depois atualizado automaticamente. Dessa forma, o endpoint continua com a mesma regra de
-    // negócio (top 10 dos últimos 15 dias ordenado por índice de prontidão), mas com menos carga
-    // no banco e resposta mais rápida.
+    // Questão 2: o ranking bate numa consulta pesada na view. Se eu ficar dando F5 ou testando no Postman,
+    // o banco refaz a mesma coisa várias vezes sem precisar. Por isso eu guardei o resultado no Redis.
+    // O @Cacheable está no PainelTaticoService (service, não controller). TTL de 1 dia: depois disso
+    // limpa sozinho e busca de novo no banco. O endpoint continua igual (top 10, 15 dias, índice de
+    // prontidão); eu só não mexi na view. disableCachingNullValues = não cachear valor nulo.
     @Bean
-    public CacheManager cacheManager() {
-        CaffeineCacheManager cacheManager = new CaffeineCacheManager("topMissoes15dias");
-        cacheManager.setCaffeine(
-                Caffeine.newBuilder()
-                        .expireAfterWrite(60, TimeUnit.SECONDS)
-                        .maximumSize(100)
-        );
-        return cacheManager;
+    public RedisCacheManagerBuilderCustomizer redisCacheManagerBuilderCustomizer() {
+        return (builder) -> builder
+                .withCacheConfiguration("topMissoes15dias",
+                        RedisCacheConfiguration.defaultCacheConfig()
+                                .entryTtl(Duration.ofDays(1))
+                                .disableCachingNullValues()
+                );
     }
 }
