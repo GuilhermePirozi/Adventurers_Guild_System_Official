@@ -83,7 +83,7 @@ Antes de rodar o projeto, você precisa ter instalado:
 
 ### 🔹 Datasource da aplicação
 
-```properties
+properties
 spring.datasource.url=jdbc:postgresql://localhost:5432/postgres
 spring.datasource.username=postgres
 spring.datasource.password=guildpass
