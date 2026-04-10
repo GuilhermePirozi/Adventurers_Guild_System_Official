@@ -11,7 +11,6 @@ import br.infnet.tp1_guilda.repository.aventura.RepositoryParticipacaoMissao.Ran
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
 import java.time.OffsetDateTime;
 import java.util.Comparator;
 import java.util.List;

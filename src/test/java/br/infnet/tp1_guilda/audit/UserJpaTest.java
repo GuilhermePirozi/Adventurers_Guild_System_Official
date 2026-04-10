@@ -1,4 +1,5 @@
 package br.infnet.tp1_guilda.audit;
+
 import br.infnet.tp1_guilda.config.TestCacheConfig;
 import br.infnet.tp1_guilda.domain.audit.Organization;
 import br.infnet.tp1_guilda.domain.audit.Permission;
@@ -11,6 +12,7 @@ import br.infnet.tp1_guilda.repository.audit.RepositoryRole;
 import br.infnet.tp1_guilda.repository.audit.RepositoryUser;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.data.jpa.test.autoconfigure.DataJpaTest;
@@ -46,6 +48,7 @@ class UserJpaTest {
     EntityManager em;
 
     @Test
+    @DisplayName("Deve persistir usuário com roles, organização e permissões corretamente")
     void usuarioRolesOrganizacaoEPermissoesPersistemERecarregam() {
         Organization org = repositoryOrganization.save(
                 Organization.builder().nome("Org TP").ativo(true).build());
