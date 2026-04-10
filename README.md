@@ -79,11 +79,6 @@ Antes de rodar o projeto, você precisa ter instalado:
 
 ---
 
-Aqui está o conteúdo convertido para Markdown:
-markdown# 🗡️ AT System — Guia de Configuração e Execução
-
----
-
 ## ⚠️ Configuração inicial do Hibernate (IMPORTANTE)
 
 ### 🔹 Primeira execução
