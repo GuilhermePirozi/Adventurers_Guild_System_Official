@@ -69,6 +69,16 @@ public class GlobalExceptionHandler {
         return new ResponseEntity<>(error, HttpStatus.NOT_FOUND);
     }
 
+    @ExceptionHandler(ProdutoLojaNotFoundException.class)
+    public ResponseEntity<ErrorResponse> handleProdutoLojaNotFound(ProdutoLojaNotFoundException ex) {
+        ErrorResponse error = new ErrorResponse(
+                HttpStatus.NOT_FOUND.value(),
+                ex.getMessage(),
+                LocalDateTime.now()
+        );
+        return new ResponseEntity<>(error, HttpStatus.NOT_FOUND);
+    }
+
     @ExceptionHandler(ElasticsearchException.class)
     public ResponseEntity<ErrorResponse> handleElasticsearchComunicacao(ElasticsearchException ex) {
         ErrorResponse error = new ErrorResponse(
