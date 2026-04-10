@@ -1,0 +1,33 @@
+name: at-system
+services:
+  elasticsearch:
+    image: leogloriainfnet/elastic-tp2-spring:1.0-windows
+    container_name: elasticsearch-tp3
+    environment:
+      - discovery.type=single-node
+      - xpack.security.enabled=false
+    ports:
+      - "9200:9200"
+    networks:
+      - elastic
+
+  kibana:
+    image: docker.elastic.co/kibana/kibana:9.2.5
+    container_name: kibana-tp3
+    environment:
+      - ELASTICSEARCH_HOSTS=http://elasticsearch:9200
+    ports:
+      - "5601:5601"
+    depends_on:
+      - elasticsearch
+    networks:
+      - elastic
+
+  redis-tp3:
+    image: redis:latest
+    container_name: redis-cache-tp3
+    ports:
+      - "6379:6379"
+networks:
+  elastic:
+    driver: bridge
