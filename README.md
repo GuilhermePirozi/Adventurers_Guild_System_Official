@@ -223,42 +223,42 @@ curl http://localhost:8080/aventureiros
 
 ## 🔥 Endpoints principais
 
-### 🧙 Aventureiros
+🧙 Aventureiros
 GET  /aventureiros
 GET  /aventureiros?size=100
 GET  /aventureiros/busca?trecho=Aegwynn
 GET  /aventureiros/{id}
 GET  /aventureiros/{id}/perfil
+
 PATCH /aventureiros/{id}
 PATCH /aventureiros/{id}/encerrar-vinculo
 PATCH /aventureiros/{id}/recrutar
+
 PUT   /aventureiros/{id}/companheiro
 PATCH /aventureiros/{id}/companheiro
 PATCH /aventureiros/{id}/remover-companheiro
 
-### 🗡️ Missões
+🗡️ Missões
 GET    /missoes
 GET    /missoes?size=50
 GET    /missoes/{id}
 GET    /missoes/{id}/detalhe
+
 PATCH  /missoes/{id}
 DELETE /missoes/{id}
+
 POST   /missoes/{id}/aventureiros/{id}/participacao
 DELETE /missoes/{id}/aventureiros/{id}/participacao
+
 GET    /missoes/top15dias
 
-### 📊 Relatórios
+📊 Relatórios
 GET /relatorios/ranking-participacao
 GET /relatorios/missoes-metricas
-
-**Exemplo:**
+Exemplo:
 /relatorios/ranking-participacao?inicio=2000-01-01T00:00:00Z&fim=2100-01-01T00:00:00Z
 
----
-
-## 🔎 Elasticsearch
-
-### 🔹 Buscas
+🔎 Elasticsearch — Buscas
 GET /produtos/busca/nome?termo=espada
 GET /produtos/busca/descricao?termo=dragoes
 GET /produtos/busca/frase
@@ -267,8 +267,7 @@ GET /produtos/busca/multicampos
 GET /produtos/busca/com-filtro
 GET /produtos/busca/faixa-preco
 GET /produtos/busca/avancada
-
-### 🔹 Agregações
+🔎 Elasticsearch — Agregações
 GET /produtos/agregacoes/por-categoria
 GET /produtos/agregacoes/por-raridade
 GET /produtos/agregacoes/preco-medio
