@@ -67,25 +67,25 @@ public class MissaoController {
         return ResponseEntity.ok(body);
     }
 
-    @GetMapping("/{id:\\d+}/detalhe")
+    @GetMapping("/{id}/detalhe")
     public ResponseEntity<ResponseMissaoDetalhe> detalhar(@PathVariable Long id) {
         Missao missao = missaoService.buscarDetalhado(id);
         return ResponseEntity.ok(mapperMissao.toDetalhe(missao));
     }
 
-    @GetMapping("/{id:\\d+}")
+    @GetMapping("/{id}")
     public ResponseEntity<ResponseMissao> buscarPorId(@PathVariable Long id) {
         Missao missao = missaoService.buscarPorId(id);
         return ResponseEntity.ok(mapperMissao.toResponse(missao));
     }
 
-    @PatchMapping("/{id:\\d+}")
+    @PatchMapping("/{id}")
     public ResponseEntity<ResponseMissao> atualizar(@PathVariable Long id, @Valid @RequestBody AtualizarMissao dto) {
         Missao atualizada = missaoService.atualizar(id, dto);
         return ResponseEntity.ok(mapperMissao.toResponse(atualizada));
     }
 
-    @DeleteMapping("/{id:\\d+}")
+    @DeleteMapping("/{id}")
     public ResponseEntity<Void> remover(@PathVariable Long id) {
         missaoService.remover(id);
         return ResponseEntity.noContent().build();

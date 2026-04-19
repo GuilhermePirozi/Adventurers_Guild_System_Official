@@ -69,49 +69,49 @@ public class AventureiroController {
         return ResponseEntity.ok(body);
     }
 
-    @GetMapping("/{id:\\d+}/perfil")
+    @GetMapping("/{id}/perfil")
     public ResponseEntity<ResponseAventureiroPerfil> perfilCompleto(@PathVariable Long id) {
         return ResponseEntity.ok(serviceAventureiro.buscarPerfilCompleto(id));
     }
 
-    @GetMapping("/{id:\\d+}")
+    @GetMapping("/{id}")
     public ResponseEntity<ResponseAventureiro> buscarPorId(@PathVariable Long id) {
         Aventureiro aventureiro = serviceAventureiro.buscarPorId(id);
         return ResponseEntity.ok(mapperAventureiro.toResponse(aventureiro));
     }
 
-    @PatchMapping("/{id:\\d+}")
+    @PatchMapping("/{id}")
     public ResponseEntity<ResponseAventureiro> atualizar(@PathVariable Long id, @Valid @RequestBody AtualizarAventureiro update
     ) {
         Aventureiro atualizado = serviceAventureiro.atualizar(id, update);
         return ResponseEntity.ok(mapperAventureiro.toResponse(atualizado));
     }
 
-    @PatchMapping("/{id:\\d+}/encerrar-vinculo")
+    @PatchMapping("/{id}/encerrar-vinculo")
     public ResponseEntity<ResponseAventureiro> encerrarVinculo(@PathVariable Long id) {
         Aventureiro aventureiro = serviceAventureiro.encerrarVinculo(id);
         return ResponseEntity.ok(mapperAventureiro.toResponse(aventureiro));
     }
 
-    @PatchMapping("/{id:\\d+}/recrutar")
+    @PatchMapping("/{id}/recrutar")
     public ResponseEntity<ResponseAventureiro> recrutarNovamente(@PathVariable Long id) {
         Aventureiro aventureiro = serviceAventureiro.recrutarNovamente(id);
         return ResponseEntity.ok(mapperAventureiro.toResponse(aventureiro));
     }
 
-    @PutMapping("/{id:\\d+}/companheiro")
+    @PutMapping("/{id}/companheiro")
     public ResponseEntity<ResponseAventureiro> definirCompanheiro(@PathVariable Long id, @Valid @RequestBody DefinirCompanheiro dto) {
         Aventureiro aventureiro = serviceAventureiro.definirCompanheiro(id, dto);
         return ResponseEntity.ok(mapperAventureiro.toResponse(aventureiro));
     }
 
-    @PatchMapping("/{id:\\d+}/companheiro")
+    @PatchMapping("/{id}/companheiro")
     public ResponseEntity<ResponseAventureiro> atualizarCompanheiro(@PathVariable Long id, @Valid @RequestBody AtualizarCompanheiro dto) {
         Aventureiro aventureiro = serviceAventureiro.atualizarCompanheiro(id, dto);
         return ResponseEntity.ok(mapperAventureiro.toResponse(aventureiro));
     }
 
-    @PatchMapping("/{id:\\d+}/remover-companheiro")
+    @PatchMapping("/{id}/remover-companheiro")
     public ResponseEntity<ResponseAventureiro> removerCompanheiro(@PathVariable Long id) {
         Aventureiro aventureiro = serviceAventureiro.removerCompanheiro(id);
         return ResponseEntity.ok(mapperAventureiro.toResponse(aventureiro));
